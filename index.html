@@ -1,0 +1,105 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Land Plot</title>
+
+<style type="text/css">
+
+#board {
+	width: 100%;
+	padding: 5px;
+	content: "";
+  display: table;
+  clear: both;
+  background: #333;
+}
+
+
+#board div {
+	float: left;
+	width: 10%;
+	height: 128px;
+	
+}
+
+#dirt, .dirt { background: #C93 url(images/dirt.png);}
+#grass, .grass { background: #0C6  url(images/grass.png); }
+#water, .water { background:#09C  url(images/water.png); }
+
+
+
+#materials ul {
+	clear: both;
+}
+
+#materials li {
+	border: 1px solid #FFF;
+	list-style: none;
+	float: left;
+	height: 64px;
+	width: 64px;
+	margin: 5px;
+}
+
+#materials .active { border: 1px solid #F00;}
+
+
+</style>
+
+
+</head>
+
+<body>
+
+
+<div id="controls">
+
+    <ul id="materials">
+        <li id="dirt" class="active"></li>
+        <li id="grass"></li>
+        <li id="water"></li>
+    </ul>
+    
+
+</div>
+
+
+<div id="board"></div>
+
+
+
+
+<script type="text/javascript" src="https://code.jquery.com/jquery-1.12.4.js"></script>
+
+<script>
+
+var material = "dirt";
+
+$( document ).ready(function() {
+	
+	for (i=0; i<100; i++) {
+			$("#board").append('<div></div>');		
+	}
+	
+	$( "#materials li" ).click(function() {
+		console.log (material);
+		$("#materials li").removeClass("active");
+		$(this).addClass("active");
+		material = $(this).attr('id');
+	})
+	
+	
+	$( "#board div" ).click(function() {
+		$(this).removeAttr('class');
+		$(this).addClass(material);
+		console.log (material);
+	})
+	
+});
+
+
+</script>
+
+</body>
+</html>
